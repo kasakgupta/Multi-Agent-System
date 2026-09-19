@@ -1,3 +1,6 @@
+# Streamlit UI
+streamlit>=1.40,<2
+
 # Core LLM + LangChain ecosystem
 langchain>=0.2.0
 langchain-core>=0.2.0
