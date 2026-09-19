@@ -20,11 +20,20 @@ from datetime import datetime
 from urllib.parse import urlparse
 import re
 
-import streamlit as st
 
 # --- Backend import -----------------------------------------------------
 # The real pipeline is the source of truth. If it can't be imported, we stop
 # with a clear message instead of guessing at a fake interface.
+import streamlit as st
+import os
+
+# Load API keys from Streamlit Cloud Secrets
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+
+if "TAVILY_API_KEY" in st.secrets:
+    os.environ["TAVILY_API_KEY"] = st.secrets["TAVILY_API_KEY"]
+
 try:
     from pipeline import run_research_pipeline
 except Exception as e:  # noqa: BLE001
